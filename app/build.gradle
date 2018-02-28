@@ -9,7 +9,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
-        versionName "1.2.1.180227_Beta|Linux Shell"
+        versionName "1.2.2.180228_Alpha|Linux Shell"
     }
     buildTypes {
         release {
