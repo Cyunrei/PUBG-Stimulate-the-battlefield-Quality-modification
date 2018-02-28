@@ -5,7 +5,6 @@
 <br/>**开发情况：开发完成**
 <br/>**反馈邮箱：Cyunrei@Gmail.com**
 ## 应用截图
-
 ![](https://github.com/Cyunrei/PUBG-Stimulate-the-battlefield-Quality-modification/blob/master/Screenshot_20180228-234420.png)
 ![](https://github.com/Cyunrei/PUBG-Stimulate-the-battlefield-Quality-modification/blob/master/Screenshot_20180228-234426.png)
 ![](https://github.com/Cyunrei/PUBG-Stimulate-the-battlefield-Quality-modification/blob/master/Screenshot_20180228-234430.png)
