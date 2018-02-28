@@ -9,5 +9,5 @@
 ### 依赖系统的二进制文件
 ```
 /system/bin/rm
-/system/bin/seb
+/system/bin/sed
 ```
