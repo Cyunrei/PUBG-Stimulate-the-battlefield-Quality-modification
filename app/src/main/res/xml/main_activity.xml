@@ -2,21 +2,21 @@
 	<PreferenceCategory
 		android:title="体验性">
 		<ListPreference
-			android:defaultValue="1"
+			android:defaultValue="0"
 			android:entries="@array/fluency"
 			android:entryValues="@array/fluency_value"
 			android:key="fluency"
 			android:title="流畅度"
 			android:summary="游戏运行畅度"/>
 		<ListPreference
-			android:defaultValue="1"
+			android:defaultValue="0"
 			android:entries="@array/special_effects"
 			android:entryValues="@array/special_effects_value"
 			android:key="special_effects"
 			android:title="特效"
 			android:summary="游戏特效显示程度"/>
 		<ListPreference
-			android:defaultValue="1"
+			android:defaultValue="0"
 			android:entries="@array/frame"
 			android:entryValues="@array/frame_value"
 			android:key="frame"
@@ -26,14 +26,14 @@
 	<PreferenceCategory
 		android:title="图像">
 		<ListPreference
-			android:defaultValue="1"
+			android:defaultValue="0"
 			android:entries="@array/material_level"
 			android:entryValues="@array/material_level_value"
 			android:key="material_level"
 			android:title="材质水平"
 			android:summary="游戏图像清晰程度"/>
 		<ListPreference
-			android:defaultValue="1"
+			android:defaultValue="0"
 			android:entries="@array/image_quality_style"
 			android:entryValues="@array/image_quality_style_value"
 			android:key="image_quality_style"
@@ -43,28 +43,35 @@
 	<PreferenceCategory
 		android:title="渲染">
 		<ListPreference
-			android:defaultValue="1"
+			android:defaultValue="0"
+			android:entries="@array/ui_resolution"
+			android:entryValues="@array/ui_resolution_value"
+			android:key="ui_resolution"
+			android:title="界面分辨率"
+			android:summary="游戏操作界面的分辨率"/>
+		<ListPreference
+			android:defaultValue="0"
 			android:entries="@array/shadow_resolution"
 			android:entryValues="@array/shadow_resolution_value"
 			android:key="shadow_resolution"
 			android:title="阴影分辨率"
 			android:summary="游戏物体阴影清晰程度"/>
 		<ListPreference
-			android:defaultValue="1"
+			android:defaultValue="0"
 			android:entries="@array/shadow_visible_distance"
 			android:entryValues="@array/shadow_visible_distance_value"
 			android:key="shadow_visible_distance"
 			android:title="阴影可视距离"
 			android:summary="游戏物体阴影可视距离"/>
 		<ListPreference
-			android:defaultValue="1"
+			android:defaultValue="0"
 			android:entries="@array/shadow_quality"
 			android:entryValues="@array/shadow_quality_value"
 			android:key="shadow_quality"
 			android:title="阴影质量"
 			android:summary="游戏物体阴影细节程度"/>
 		<ListPreference
-			android:defaultValue="1"
+			android:defaultValue="0"
 			android:entries="@array/heterosexual_filtration"
 			android:entryValues="@array/heterosexual_filtration_value"
 			android:key="heterosexual_filtration"
@@ -74,13 +81,19 @@
 	<PreferenceCategory
 		android:title="关于">
 		<Preference
-			android:title="开发者"
-			android:summary="Cyunrei"/>
-		<Preference
 			android:title="软件版本"
-			android:summary="1.2.1.180227_Beta|Linux Shell"/>
+			android:summary="1.2.2.180228_Alpha|Linux Shell"/>
+		<Preference
+			android:title="开放代源码"
+			android:summary="https://github.com/Cyunrei/PUBG-Stimulate-the-battlefield-Quality-modification"/>
+		<Preference
+			android:title="联系开发者"
+			android:summary="Email:cyunrei@gmail.com\nWebsite:github.com/cyunrei"/>
 		<Preference
 			android:title="可正常执行操作依赖路径"
-			android:summary="/system/bin/sed\n/system/bin/rm"/>
+			android:summary="/system/bin/rm\n/system/bin/sed"/>
+		<Preference
+			android:title="默认配置文件支持可流畅运行的设备"
+			android:summary="GPU:Qualcomm Adreno 506\nCPU:Qualcomm Snapdragon 625"/>
 	</PreferenceCategory>
 </PreferenceScreen>
