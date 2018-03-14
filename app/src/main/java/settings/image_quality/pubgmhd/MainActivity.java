@@ -14,6 +14,18 @@ import android.os.Build;
 import android.graphics.Color;
 import android.view.View;
 import android.util.Log;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
+import android.Manifest;
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.app.AlertDialog;
+import android.content.SharedPreferences;
+import android.content.Context;
+
+
+
+
 
 public class MainActivity extends PreferenceActivity
 {
@@ -47,9 +59,11 @@ public class MainActivity extends PreferenceActivity
 	PreferenceManager heterosexual_filtrationManager;
 	ListPreference heterosexual_filtrationList;
 
+
+
 	private String fileDirPath = android.os.Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android";
     private String fileName = "UserCustom.ini";
-//	private static final String TAG= null;
+//	private static final String TAG = null;
 
 	private void createFile()
 	{  
@@ -69,7 +83,7 @@ public class MainActivity extends PreferenceActivity
 					//Log.d(TAG, "创建目录失败");  
                 }  
             }  
-            // 目录存在，则将apk中raw中的需要的文档复制到该目录下  
+            // 目录存在，则将apk中asset中的需要的文档复制到该目录下  
             File file = new File(filePath);  
             if (!file.exists())
 			{// 文件不存在  
@@ -107,8 +121,39 @@ public class MainActivity extends PreferenceActivity
     protected void onCreate(Bundle savedInstanceState)
 	{	
 
+		//适配Android M+;6.0+ API 23+请求权限
+		if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+			ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+
+		//适配Material Design主题与虚拟按键颜色
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+		{
+			//添加变色标志
+			this.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+			//设置状态栏文字颜色及图标为浅色
+			getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
+			//设置虚拟按键颜色为白色
+			getWindow().setNavigationBarColor(Color.parseColor("#ffffff"));
+		}
+		
+		//获取dialog键值对
+		SharedPreferences reder= getSharedPreferences("dialog", MODE_PRIVATE);
+		//键值对类型转换为String
+		String value = reder.getString("tip", "");
+		//首次使用提示对话框判定
+		if (value.equals("1"))
+		{
+			//不提示对话框
+		}
+		else
+		{
+			TipDialog();
+		}
+		
+		//更新原有配置文件
 		try
 		{
+
 			java.lang.Process p = Runtime.getRuntime().exec("rm -R /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
 			try
 			{
@@ -121,20 +166,14 @@ public class MainActivity extends PreferenceActivity
 
 			super.onCreate(savedInstanceState);
 			addPreferencesFromResource(R.xml.main_activity);
-			
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-			{
 
-				//添加变色标志
-				this.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-				//设置状态栏文字颜色及图标为浅色
-				getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-				//设置虚拟按键颜色为白色
-				getWindow().setNavigationBarColor(Color.parseColor("#ffffff"));
-			}
+
+			//创建配置文件
 			createFile();
 
-			Toast.makeText(MainActivity.this, "所有设置重启此应用和游戏后生效", Toast.LENGTH_SHORT).show();
+			//Toast.makeText(MainActivity.this, "所有设置重启此应用和游戏后生效", Toast.LENGTH_SHORT).show();
+
+
 
 
 			fluencyManager = getPreferenceManager();
@@ -478,5 +517,40 @@ public class MainActivity extends PreferenceActivity
 		{}
 
     }
+
+	private void TipDialog()
+	{
+		/* @setIcon 设置对话框图标
+		 * @setTitle 设置对话框标题
+		 * @setMessage 设置对话框消息提示
+		 * setXXX方法返回Dialog对象，因此可以链式设置属性
+		 */
+		final AlertDialog.Builder normalDialog = new AlertDialog.Builder(MainActivity.this);
+		normalDialog.setTitle("提示");
+		normalDialog.setMessage("使用说明\n•默认超高清配置支持大部分机型\n•使用自定义配置需要重启本程序\n•本程序修改配置文件不会造成封号\n设置未生效原因\n•未给予程序读写内部存储权限\n•配置过高或配置不当导致游戏自动恢复默认");
+		normalDialog.setPositiveButton("确定", 
+			new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which)
+				{
+					//...To-do
+				}
+			});
+		normalDialog.setNegativeButton("下次不再提示", 
+			new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which)
+				{
+					//...To-do
+					SharedPreferences.Editor editor = getSharedPreferences("dialog", MODE_PRIVATE).edit();
+					editor.putString("tip", "1");//key名称，任意填写。
+
+					editor.commit();// 提交是一定需要的。
+				}
+			});
+		// 显示
+		normalDialog.show();
+	}
+
 
 }
