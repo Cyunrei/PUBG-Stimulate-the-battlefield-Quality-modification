@@ -3,9 +3,8 @@
     package="settings.image_quality.pubgmhd" >
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <application
-        android:allowBackup="true"
         android:label="绝地求生 刺激战场 画质设置"
-        android:theme="@android:style/Theme.Material.Light" >
+        android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
             android:label="绝地求生 刺激战场 画质设置" >
