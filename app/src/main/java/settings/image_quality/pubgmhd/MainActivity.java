@@ -65,58 +65,6 @@ public class MainActivity extends PreferenceActivity
     private String fileName = "UserCustom.ini";
 //	private static final String TAG = null;
 
-	private void createFile()
-	{  
-        String filePath = fileDirPath + "/" + fileName;
-        try
-		{  
-            File dir = new File(fileDirPath);// 目录路径  
-            if (!dir.exists())
-			{// 如果不存在，则创建路径名  
-				//Log.d(TAG, "要存储的目录不存在");  
-                if (dir.mkdirs())
-				{// 创建该路径名，返回true则表示创建成功  
-					//Log.d(TAG, "已经创建文件存储目录");  
-                }
-				else
-				{  
-					//Log.d(TAG, "创建目录失败");  
-                }  
-            }  
-            // 目录存在，则将apk中asset中的需要的文档复制到该目录下  
-            File file = new File(filePath);  
-            if (!file.exists())
-			{// 文件不存在  
-				//Log.d(TAG, "要打开的文件不存在");  
-				AssetManager am = null;  
-
-				am = getAssets();  
-
-				InputStream ins = am.open("UserCustom.ini");  
-
-				//Log.d(TAG, "开始读入");  
-                FileOutputStream fos = new FileOutputStream(file);  
-				//Log.d(TAG, "开始写出");  
-                byte[] buffer = new byte[8192];  
-                int count = 0;// 循环写出  
-                while ((count = ins.read(buffer)) > 0)
-				{  
-                    fos.write(buffer, 0, count);  
-                }  
-				//Log.d(TAG, "已经创建该文件");  
-
-                fos.close();// 关闭流  
-                ins.close();  
-            }  
-        }
-		catch (Exception e)
-		{  
-            e.printStackTrace();  
-        }  
-    }  
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
 	{	
@@ -131,23 +79,39 @@ public class MainActivity extends PreferenceActivity
 			//添加变色标志
 			this.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 			//设置状态栏文字颜色及图标为浅色
-			getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
+			//getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
+			getWindow().setStatusBarColor(Color.parseColor("#E0E0E0"));
 			//设置虚拟按键颜色为白色
-			getWindow().setNavigationBarColor(Color.parseColor("#ffffff"));
+			getWindow().setNavigationBarColor(Color.WHITE);
+			
 		}
 		
 		//获取dialog键值对
-		SharedPreferences reder= getSharedPreferences("dialog", MODE_PRIVATE);
+		SharedPreferences updateReader = getSharedPreferences("dialog", MODE_PRIVATE);
 		//键值对类型转换为String
-		String value = reder.getString("tip", "");
-		//首次使用提示对话框判定
-		if (value.equals("1"))
+		String Updatealue = updateReader.getString("update", "");
+		//更新日志对话框
+		if (Updatealue.equals("1"))
 		{
 			//不提示对话框
 		}
 		else
 		{
-			TipDialog();
+			updateDialog();
+		}
+		
+		//获取dialog键值对
+		SharedPreferences tipReader= getSharedPreferences("dialog", MODE_PRIVATE);
+		//键值对类型转换为String
+		String tipValue = tipReader.getString("tip", "");
+		//首次使用提示对话框判定
+		if (tipValue.equals("1"))
+		{
+			//不提示对话框
+		}
+		else
+		{
+			tipDialog();
 		}
 		
 		//更新原有配置文件
@@ -517,8 +481,58 @@ public class MainActivity extends PreferenceActivity
 		{}
 
     }
+	
+	private void createFile()
+	{  
+        String filePath = fileDirPath + "/" + fileName;
+        try
+		{  
+            File dir = new File(fileDirPath);// 目录路径  
+            if (!dir.exists())
+			{// 如果不存在，则创建路径名  
+				//Log.d(TAG, "要存储的目录不存在");  
+                if (dir.mkdirs())
+				{// 创建该路径名，返回true则表示创建成功  
+					//Log.d(TAG, "已经创建文件存储目录");  
+                }
+				else
+				{  
+					//Log.d(TAG, "创建目录失败");  
+                }  
+            }  
+            // 目录存在，则将apk中asset中的需要的文档复制到该目录下  
+            File file = new File(filePath);  
+            if (!file.exists())
+			{// 文件不存在  
+				//Log.d(TAG, "要打开的文件不存在");  
+				AssetManager am = null;  
 
-	private void TipDialog()
+				am = getAssets();  
+
+				InputStream ins = am.open("UserCustom.ini");  
+
+				//Log.d(TAG, "开始读入");  
+                FileOutputStream fos = new FileOutputStream(file);  
+				//Log.d(TAG, "开始写出");  
+                byte[] buffer = new byte[8192];  
+                int count = 0;// 循环写出  
+                while ((count = ins.read(buffer)) > 0)
+				{  
+                    fos.write(buffer, 0, count);  
+                }  
+				//Log.d(TAG, "已经创建该文件");  
+
+                fos.close();// 关闭流  
+                ins.close();  
+            }  
+        }
+		catch (Exception e)
+		{  
+            e.printStackTrace();  
+        }  
+    }  
+	
+	private void updateDialog()
 	{
 		/* @setIcon 设置对话框图标
 		 * @setTitle 设置对话框标题
@@ -526,10 +540,37 @@ public class MainActivity extends PreferenceActivity
 		 * setXXX方法返回Dialog对象，因此可以链式设置属性
 		 */
 		final AlertDialog.Builder normalDialog = new AlertDialog.Builder(MainActivity.this);
+		normalDialog.setTitle("更新日志");
+		normalDialog.setMessage("支持Android P(03-12)\n优化部分代码(03-12)\n优化主题对导航栏的适配(03-12)\n适配了Android M以上的权限问题(03-13)\n修复屏幕下方导航栏配色问题(03-15)\n全新的Android O主题(03-15)");
+		normalDialog.setPositiveButton("我知道了", new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which)
+				{
+					//...To-do
+				}
+			});
+			
+		SharedPreferences.Editor editor = getSharedPreferences("dialog", MODE_PRIVATE).edit();
+		editor.putString("update", "1");//key名称，任意填写。
+		editor.commit();// 提交是一定需要的。
+			
+		// 显示
+		normalDialog.show();
+	}
+
+	private void tipDialog()
+	{
+		/* @setIcon 设置对话框图标
+		 * @setTitle 设置对话框标题
+		 * @setMessage 设置对话框消息提示
+		 * setXXX方法返回Dialog对象，因此可以链式设置属性
+		 */
+		 
+		final AlertDialog.Builder normalDialog = new AlertDialog.Builder(MainActivity.this);
+		
 		normalDialog.setTitle("提示");
 		normalDialog.setMessage("使用说明\n•默认超高清配置支持大部分机型\n•使用自定义配置需要重启本程序\n•本程序修改配置文件不会造成封号\n设置未生效原因\n•未给予程序读写内部存储权限\n•配置过高或配置不当导致游戏自动恢复默认");
-		normalDialog.setPositiveButton("确定", 
-			new DialogInterface.OnClickListener() {
+		normalDialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
 				@Override
 				public void onClick(DialogInterface dialog, int which)
 				{
@@ -551,6 +592,5 @@ public class MainActivity extends PreferenceActivity
 		// 显示
 		normalDialog.show();
 	}
-
 
 }
