@@ -13,7 +13,7 @@ public class Encryption
 	StringBuffer plainStr = new StringBuffer("");	
 	StringBuffer cipherStr = new StringBuffer("");	
 	
-	EncryptionContrastList C = new EncryptionContrastList();
+	ContrastList C = new ContrastList();
 	Map<Character, String> maplist = C.maplist;
 
 	public static void main(String[] args)
@@ -50,7 +50,7 @@ public class Encryption
 			catch (IOException e)
 			{
 			}	
-			System.out.println("参数错误===============================================================================");
+			System.out.print("参数错误===============================================================================\n明文：");
 		}
 	}
 
