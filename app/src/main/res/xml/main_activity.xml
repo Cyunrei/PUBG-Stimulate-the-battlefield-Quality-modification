@@ -78,128 +78,29 @@
 			android:title="各项异性过滤"
 			android:summary="过滤、处理当视角变化导致3D物体表面倾斜时造成的纹理错误"/>
 	</PreferenceCategory>
-	<PreferenceCategory
-		android:title="关于">
-		<Preference
-			android:title="软件版本"
-			android:summary="1.2.2.180228_Alpha|Linux Shell"/>
-		<Preference
-			android:title="开放代源码"
-			android:summary="https://github.com/Cyunrei/PUBG-Stimulate-the-battlefield-Quality-modification"/>
-		<Preference
-			android:title="联系开发者"
-			android:summary="Email:cyunrei@gmail.com\nWebsite:github.com/cyunrei"/>
-		<Preference
-			android:title="可正常执行操作依赖路径"
-			android:summary="/system/bin/rm\n/system/bin/sed"/>
-		<Preference
-			android:title="默认配置文件支持可流畅运行的设备"
-			android:summary="GPU:Qualcomm Adreno 506\nCPU:Qualcomm Snapdragon 625"/>
-	</PreferenceCategory>
-</PreferenceScreen>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-	<PreferenceCategory
-		android:title="体验性">
-		<ListPreference
-			android:defaultValue="0"
-			android:entries="@array/fluency"
-			android:entryValues="@array/fluency_value"
-			android:key="fluency"
-			android:title="流畅度"
-			android:summary="游戏运行畅度"/>
-		<ListPreference
-			android:defaultValue="0"
-			android:entries="@array/special_effects"
-			android:entryValues="@array/special_effects_value"
-			android:key="special_effects"
-			android:title="特效"
-			android:summary="游戏特效显示程度"/>
-		<ListPreference
-			android:defaultValue="0"
-			android:entries="@array/frame"
-			android:entryValues="@array/frame_value"
-			android:key="frame"
-			android:title="帧率"
-			android:summary="游戏帧率阀值"/>
-	</PreferenceCategory>
-	<PreferenceCategory
-		android:title="图像">
-		<ListPreference
-			android:defaultValue="0"
-			android:entries="@array/material_level"
-			android:entryValues="@array/material_level_value"
-			android:key="material_level"
-			android:title="材质水平"
-			android:summary="游戏图像清晰程度"/>
-		<ListPreference
-			android:defaultValue="0"
-			android:entries="@array/image_quality_style"
-			android:entryValues="@array/image_quality_style_value"
-			android:key="image_quality_style"
-			android:title="画质风格"
-			android:summary="游戏图像逼真程度"/>
-	</PreferenceCategory>
-	<PreferenceCategory
-		android:title="渲染">
-		<ListPreference
-			android:defaultValue="0"
-			android:entries="@array/ui_resolution"
-			android:entryValues="@array/ui_resolution_value"
-			android:key="ui_resolution"
-			android:title="界面分辨率"
-			android:summary="游戏操作界面的分辨率"/>
-		<ListPreference
-			android:defaultValue="0"
-			android:entries="@array/shadow_resolution"
-			android:entryValues="@array/shadow_resolution_value"
-			android:key="shadow_resolution"
-			android:title="阴影分辨率"
-			android:summary="游戏物体阴影清晰程度"/>
-		<ListPreference
-			android:defaultValue="0"
-			android:entries="@array/shadow_visible_distance"
-			android:entryValues="@array/shadow_visible_distance_value"
-			android:key="shadow_visible_distance"
-			android:title="阴影可视距离"
-			android:summary="游戏物体阴影可视距离"/>
-		<ListPreference
-			android:defaultValue="0"
-			android:entries="@array/shadow_quality"
-			android:entryValues="@array/shadow_quality_value"
-			android:key="shadow_quality"
-			android:title="阴影质量"
-			android:summary="游戏物体阴影细节程度"/>
-		<ListPreference
-			android:defaultValue="0"
-			android:entries="@array/heterosexual_filtration"
-			android:entryValues="@array/heterosexual_filtration_value"
-			android:key="heterosexual_filtration"
-			android:title="各项异性过滤"
-			android:summary="过滤、处理当视角变化导致3D物体表面倾斜时造成的纹理错误"/>
-	</PreferenceCategory>
-	<PreferenceCategory
+	<!--<PreferenceCategory
 		android:title="实验性">
 	</PreferenceCategory>
 	<SwitchPreference
 		android:title="强制禁止覆盖游戏配置"
 		android:summary="禁止游戏对配置文件的操作及覆盖"
-		android:key="ban_modify"/>
+		android:key="ban_modify"/>-->
 	<PreferenceCategory
 		android:title="关于">
 		<Preference
 			android:title="软件版本"
-			android:summary="2.1.2.180315_release|Linux Shell"/>
-		<Preference
-			android:title="开放代源码"
-			android:summary="https://github.com/Cyunrei/PUBG-Stimulate-the-battlefield-Quality-modification"/>
+			android:summary="3.1.0.180317_release|Linux Shell"/>
 		<Preference
 			android:title="联系开发者"
-			android:summary="Email:cyunrei@gmail.com\nWebsite:github.com/cyunrei"/>
+			android:summary="cyunrei@gmail.com"/>
+		<Preference
+			android:title="反加密算法正则表达版本"
+			android:summary="0.0.1.180316_release|Java"/>
+		<Preference
+			android:title="软件及加密算法开放代源码"
+			android:summary="https://github.com/Cyunrei/PUBG-Stimulate-the-battlefield-Quality-modification"/>
 		<Preference
 			android:title="可正常执行操作依赖路径及命令行"
-			android:summary="/system/bin/ -sh\n--chmod-- --rm-- --sed--"/>
-		<Preference
-			android:title="默认配置文件支持可流畅运行的设备"
-			android:summary="GPU:Qualcomm Adreno 506\nCPU:Qualcomm Snapdragon 625"/>
+			android:summary="/system/bin/ -sh\n--rm-- --sed--"/>
 	</PreferenceCategory>
 </PreferenceScreen>
