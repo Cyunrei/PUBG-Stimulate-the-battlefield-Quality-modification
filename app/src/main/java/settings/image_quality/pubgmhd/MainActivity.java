@@ -23,10 +23,6 @@ import android.app.AlertDialog;
 import android.content.SharedPreferences;
 import android.content.Context;
 
-
-
-
-
 public class MainActivity extends PreferenceActivity
 {
 	PreferenceManager fluencyManager;
@@ -69,28 +65,26 @@ public class MainActivity extends PreferenceActivity
     protected void onCreate(Bundle savedInstanceState)
 	{	
 
-		//适配Android M+;6.0+ API 23+请求权限
+
 		if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
 			ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
 
-		//适配Material Design主题与虚拟按键颜色
+
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
 		{
-			//添加变色标志
+
 			this.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-			//设置状态栏文字颜色及图标为浅色
 			//getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
 			getWindow().setStatusBarColor(Color.parseColor("#E0E0E0"));
-			//设置虚拟按键颜色为白色
-			getWindow().setNavigationBarColor(Color.WHITE);
-			
+			//getWindow().setNavigationBarColor(Color.WHITE);
+
 		}
-		
-		//获取dialog键值对
+
+
 		SharedPreferences updateReader = getSharedPreferences("dialog", MODE_PRIVATE);
-		//键值对类型转换为String
+
 		String Updatealue = updateReader.getString("update", "");
-		//更新日志对话框
+
 		if (Updatealue.equals("1"))
 		{
 			//不提示对话框
@@ -99,12 +93,12 @@ public class MainActivity extends PreferenceActivity
 		{
 			updateDialog();
 		}
-		
-		//获取dialog键值对
+
+
 		SharedPreferences tipReader= getSharedPreferences("dialog", MODE_PRIVATE);
-		//键值对类型转换为String
+
 		String tipValue = tipReader.getString("tip", "");
-		//首次使用提示对话框判定
+
 		if (tipValue.equals("1"))
 		{
 			//不提示对话框
@@ -113,8 +107,7 @@ public class MainActivity extends PreferenceActivity
 		{
 			tipDialog();
 		}
-		
-		//更新原有配置文件
+
 		try
 		{
 
@@ -127,18 +120,12 @@ public class MainActivity extends PreferenceActivity
 			{}
 			p.destroy();
 
-
 			super.onCreate(savedInstanceState);
 			addPreferencesFromResource(R.xml.main_activity);
 
-
-			//创建配置文件
 			createFile();
 
 			//Toast.makeText(MainActivity.this, "所有设置重启此应用和游戏后生效", Toast.LENGTH_SHORT).show();
-
-
-
 
 			fluencyManager = getPreferenceManager();
 			fluencyList = (ListPreference) fluencyManager.findPreference("fluency");
@@ -147,21 +134,21 @@ public class MainActivity extends PreferenceActivity
 			{}
 			else if (fluency.equals("1"))
 			{	
-				Runtime.getRuntime().exec("sed -i 3c\\+CVars=r.UserQualitySetting=0 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
+				//Runtime.getRuntime().exec("sed -i 3c\\+CVars=r.UserQualitySetting=0 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 4c\\+CVars=0B572C0A1C0B280C1815100D002A1C0D0D10171E4449 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
 				//Log.d(TAG,  "当前流畅度：流畅");
 			}
 			else if (fluency.equals("2"))
 			{
 
-				Runtime.getRuntime().exec("sed -i 3c\\+CVars=r.UserQualitySetting=1 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
+				//Runtime.getRuntime().exec("sed -i 3c\\+CVars=r.UserQualitySetting=1 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 4c\\+CVars=0B572C0A1C0B280C1815100D002A1C0D0D10171E4448 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
 				//Log.d(TAG,  "当前流畅度：均衡");
 			}
 			else if (fluency.equals("3"))
 			{	
-				Runtime.getRuntime().exec("sed -i 3c\\+CVars=r.UserQualitySetting=2 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
+				//Runtime.getRuntime().exec("sed -i 3c\\+CVars=r.UserQualitySetting=2 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 4c\\+CVars=0B572C0A1C0B280C1815100D002A1C0D0D10171E444B /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
 				//Log.d(TAG,  "当前流畅度：高清");
 			}
 
@@ -172,26 +159,26 @@ public class MainActivity extends PreferenceActivity
 			{}
 			else if (special_effects.equals("1"))
 			{	
-				Runtime.getRuntime().exec("sed -i 13c\\+CVars=r.BloomQuality=0 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
+				//Runtime.getRuntime().exec("sed -i 13c\\+CVars=r.BloomQuality=0 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 20c\\+CVars=0B573B15161614280C1815100D004449 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
 				//Log.d(TAG,  "游戏特效:无");
 			}
 			else if (special_effects.equals("2"))
 			{
-				Runtime.getRuntime().exec("sed -i 13c\\+CVars=r.BloomQuality=1 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
+				//Runtime.getRuntime().exec("sed -i 13c\\+CVars=r.BloomQuality=1 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 20c\\+CVars=0B573B15161614280C1815100D004448 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
 				//Log.d(TAG,  "游戏特效：低");
 			}
 			else if (special_effects.equals("3"))
 			{
-				Runtime.getRuntime().exec("sed -i 13c\\+CVars=r.BloomQuality=2 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
+				//Runtime.getRuntime().exec("sed -i 13c\\+CVars=r.BloomQuality=2 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 20c\\+CVars=0B573B15161614280C1815100D00444B /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
 				//Log.d(TAG,  "游戏特效：中");
 			}
 			else if (special_effects.equals("4"))
 			{
-				Runtime.getRuntime().exec("sed -i 13c\\+CVars=r.BloomQuality=3 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
+				//Runtime.getRuntime().exec("sed -i 13c\\+CVars=r.BloomQuality=3 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 20c\\+CVars=0B573B15161614280C1815100D00444A /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
 				//Log.d(TAG,  "游戏特效：高");
 			}
 
@@ -202,21 +189,48 @@ public class MainActivity extends PreferenceActivity
 			{}
 			else if (frame.equals("1"))
 			{
-				Runtime.getRuntime().exec("sed -i 2c\\+CVars=r.PUBGQualityLevel=0 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
-				//Log.d(TAG,  "游戏帧率:低");
+				//Runtime.getRuntime().exec("sed -i 2c\\+CVars=r.PUBGQualityLevel=1 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 8c\\+CVars=0B57292C3B3E3D1C0F101A1C3F292A35160E444B49 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 9c\\+CVars=0B57292C3B3E3D1C0F101A1C3F292A34101D444B49 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 10c\\+CVars=0B57292C3B3E3D1C0F101A1C3F292A34101D444B49 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 11c\\+CVars=0B57292C3B3E3D1C0F101A1C3F292A313D2B444B49 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				//Log.d(TAG,  "游戏帧率:20");
 			}
 			else if (frame.equals("2"))
 			{
-				Runtime.getRuntime().exec("sed -i 2c\\+CVars=r.PUBGQualityLevel=2 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
-				//Log.d(TAG,  "游戏帧率：中");
+				//Runtime.getRuntime().exec("sed -i 2c\\+CVars=r.PUBGQualityLevel=2 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 8c\\+CVars=0B57292C3B3E3D1C0F101A1C3F292A35160E444A49 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 9c\\+CVars=0B57292C3B3E3D1C0F101A1C3F292A34101D444A49 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 10c\\+CVars=0B57292C3B3E3D1C0F101A1C3F292A34101D444A49 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 11c\\+CVars=0B57292C3B3E3D1C0F101A1C3F292A313D2B444A49 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				//Log.d(TAG,  "游戏帧率：30");
 			}
 			else if (frame.equals("3"))
 			{
-				Runtime.getRuntime().exec("sed -i 2c\\+CVars=r.PUBGQualityLevel=3 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
-				//Log.d(TAG,  "游戏帧率：高");
+				//Runtime.getRuntime().exec("sed -i 2c\\+CVars=r.PUBGQualityLevel=3 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 8c\\+CVars=0B57292C3B3E3D1C0F101A1C3F292A35160E444D49 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 9c\\+CVars=0B57292C3B3E3D1C0F101A1C3F292A34101D444D49 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 10c\\+CVars=0B57292C3B3E3D1C0F101A1C3F292A34101D444D49 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 11c\\+CVars=0B57292C3B3E3D1C0F101A1C3F292A313D2B444D49 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				//Log.d(TAG,  "游戏帧率：40");
+			}
+			else if (frame.equals("4"))
+			{
+				//Runtime.getRuntime().exec("sed -i 2c\\+CVars=r.PUBGQualityLevel=3 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 8c\\+CVars=0B57292C3B3E3D1C0F101A1C3F292A35160E444C49 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 9c\\+CVars=0B57292C3B3E3D1C0F101A1C3F292A34101D444C49 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 10c\\+CVars=0B57292C3B3E3D1C0F101A1C3F292A34101D444C49 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 11c\\+CVars=0B57292C3B3E3D1C0F101A1C3F292A313D2B444C49 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				//Log.d(TAG,  "游戏帧率：50");
+			}
+			else if (frame.equals("5"))
+			{
+				//Runtime.getRuntime().exec("sed -i 2c\\+CVars=r.PUBGQualityLevel=3 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 8c\\+CVars=0B57292C3B3E3D1C0F101A1C3F292A35160E444F49 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 9c\\+CVars=0B57292C3B3E3D1C0F101A1C3F292A34101D444F49 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 10c\\+CVars=0B57292C3B3E3D1C0F101A1C3F292A34101D444F49 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 11c\\+CVars=0B57292C3B3E3D1C0F101A1C3F292A313D2B444F49 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				//Log.d(TAG,  "游戏帧率：60");
 			}
 			material_levelManager = getPreferenceManager();
 			material_levelList = (ListPreference) material_levelManager.findPreference("material_level");
@@ -225,26 +239,26 @@ public class MainActivity extends PreferenceActivity
 			{}
 			else if (material_level.equals("1"))
 			{
-				Runtime.getRuntime().exec("sed -i 9c\\+CVars=r.MaterialQualityLevel=0 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
+				//Runtime.getRuntime().exec("sed -i 9c\\+CVars=r.MaterialQualityLevel=0 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 25c\\+CVars=0B5734180D1C0B101815280C1815100D00351C0F1C154449 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
 				//Log.d(TAG,  "材质水平:低画质");
 			}
 			else if (material_level.equals("2"))
 			{
-				Runtime.getRuntime().exec("sed -i 9c\\+CVars=r.MaterialQualityLevel=1 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
+				//Runtime.getRuntime().exec("sed -i 9c\\+CVars=r.MaterialQualityLevel=1 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 25c\\+CVars=0B5734180D1C0B101815280C1815100D00351C0F1C154448 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
 				//Log.d(TAG,  "材质水平:中等画质");
 			}
 			else if (material_level.equals("3"))
 			{
-				Runtime.getRuntime().exec("sed -i 9c\\+CVars=r.MaterialQualityLevel=1.5 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
+				//Runtime.getRuntime().exec("sed -i 9c\\+CVars=r.MaterialQualityLevel=1.5 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 25c\\+CVars=0B5734180D1C0B101815280C1815100D00351C0F1C154448574C /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
 				//Log.d(TAG,  "材质水平:高清画质");
 			}
 			else if (material_level.equals("4"))
 			{
-				Runtime.getRuntime().exec("sed -i 9c\\+CVars=r.MaterialQualityLevel=2 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
+				//Runtime.getRuntime().exec("sed -i 9c\\+CVars=r.MaterialQualityLevel=2 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 25c\\+CVars=0B5734180D1C0B101815280C1815100D00351C0F1C15444B /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
 				//Log.d(TAG,  "材质水平:超高清画质");
 			}
 
@@ -256,26 +270,26 @@ public class MainActivity extends PreferenceActivity
 			{}
 			else if (image_quality_style.equals("1"))
 			{
-				Runtime.getRuntime().exec("sed -i 8c\\+CVars=r.UserHDRSetting=0 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
+				//Runtime.getRuntime().exec("sed -i 8c\\+CVars=r.UserHDRSetting=0 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 16c\\+CVars=0B572C0A1C0B313D2B2A1C0D0D10171E4449 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
 				//Log.d(TAG,  "画质风格:无风格");
 			}
 			else if (image_quality_style.equals("2"))
 			{
-				Runtime.getRuntime().exec("sed -i 8c\\+CVars=r.UserHDRSetting=1 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
+				//Runtime.getRuntime().exec("sed -i 8c\\+CVars=r.UserHDRSetting=1 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 16c\\+CVars=0B572C0A1C0B313D2B2A1C0D0D10171E4448 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
 				//Log.d(TAG,  "画质风格:经典");
 			}
 			else if (image_quality_style.equals("3"))
 			{
-				Runtime.getRuntime().exec("sed -i 8c\\+CVars=r.UserHDRSetting=2 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
+				//Runtime.getRuntime().exec("sed -i 8c\\+CVars=r.UserHDRSetting=2 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 16c\\+CVars=0B572C0A1C0B313D2B2A1C0D0D10171E444B /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
 				//Log.d(TAG,  "画质风格:鲜艳");
 			}
 			else if (image_quality_style.equals("4"))
 			{
-				Runtime.getRuntime().exec("sed -i 8c\\+CVars=r.UserHDRSetting=3 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
+				//Runtime.getRuntime().exec("sed -i 8c\\+CVars=r.UserHDRSetting=3 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 16c\\+CVars=0B572C0A1C0B313D2B2A1C0D0D10171E444A /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
 				//Log.d(TAG,  "画质风格:写实");
 			}
 
@@ -286,20 +300,20 @@ public class MainActivity extends PreferenceActivity
 			{}
 			else if (ui_resolution.equals("1"))
 			{
-				Runtime.getRuntime().exec("sed -i 6c\\+CVars=r.MobileContentScaleFactor=1.0 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
+				//Runtime.getRuntime().exec("sed -i 6c\\+CVars=r.MobileContentScaleFactor=1.0 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 13\\+CVars=0B5734161B10151C3A16170D1C170D2A1A18151C3F181A0D160B44485749 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
 				//Log.d(TAG,  "界面分辨率:低");
 			}
 			else if (ui_resolution.equals("2"))
 			{
-				Runtime.getRuntime().exec("sed -i 6c\\+CVars=r.MobileContentScaleFactor=1.2 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
+				//Runtime.getRuntime().exec("sed -i 6c\\+CVars=r.MobileContentScaleFactor=1.2 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 13\\+CVars=0B5734161B10151C3A16170D1C170D2A1A18151C3F181A0D160B4448574B /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
 				//Log.d(TAG,  "界面分辨率:中");
 			}
 			else if (ui_resolution.equals("3"))
 			{
-				Runtime.getRuntime().exec("sed -i 6c\\+CVars=r.MobileContentScaleFactor=1.5 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
+				//Runtime.getRuntime().exec("sed -i 6c\\+CVars=r.MobileContentScaleFactor=1.5 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 13\\+CVars=0B5734161B10151C3A16170D1C170D2A1A18151C3F181A0D160B4448574C /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
 				//Log.d(TAG,  "界面分辨率:高");
 			}
 
@@ -310,32 +324,32 @@ public class MainActivity extends PreferenceActivity
 			{}
 			else if (shadow_resolution.equals("1"))
 			{
-				Runtime.getRuntime().exec("sed -i 10c\\+CVars=r.Shadow.MaxCSMResolution=0 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
+				//Runtime.getRuntime().exec("sed -i 10c\\+CVars=r.Shadow.MaxCSMResolution=0 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 26c\\+CVars=0B572A11181D160E573418013A2A342B1C0A16150C0D1016174449 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
 				//Log.d(TAG,  "阴影分辨率:0");
 			}
 			else if (shadow_resolution.equals("2"))
 			{
-				Runtime.getRuntime().exec("sed -i 10c\\+CVars=r.Shadow.MaxCSMResolution=128 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
+				//Runtime.getRuntime().exec("sed -i 10c\\+CVars=r.Shadow.MaxCSMResolution=128 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 26c\\+CVars=0B572A11181D160E573418013A2A342B1C0A16150C0D10161744484B41 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
 				//Log.d(TAG,  "阴影分辨率:128");
 			}
 			else if (shadow_resolution.equals("3"))
 			{
-				Runtime.getRuntime().exec("sed -i 10c\\+CVars=r.Shadow.MaxCSMResolution=512 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
+				//Runtime.getRuntime().exec("sed -i 10c\\+CVars=r.Shadow.MaxCSMResolution=512 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 26c\\+CVars=0B572A11181D160E573418013A2A342B1C0A16150C0D101617444C484B /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
 				//Log.d(TAG,  "阴影分辨率:512");
 			}
 			else if (shadow_resolution.equals("4"))
 			{
-				Runtime.getRuntime().exec("sed -i 10c\\+CVars=r.Shadow.MaxCSMResolution=1024 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
+				//Runtime.getRuntime().exec("sed -i 10c\\+CVars=r.Shadow.MaxCSMResolution=1024 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 26c\\+CVars=0B572A11181D160E573418013A2A342B1C0A16150C0D1016174448494B4D /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
 				//Log.d(TAG,  "阴影分辨率:1024");
 			}
 			else if (shadow_resolution.equals("5"))
 			{
-				Runtime.getRuntime().exec("sed -i 10c\\+CVars=r.Shadow.MaxCSMResolution=2048 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
+				//Runtime.getRuntime().exec("sed -i 10c\\+CVars=r.Shadow.MaxCSMResolution=2048 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 26c\\+CVars=0B572A11181D160E573418013A2A342B1C0A16150C0D101617444B494D41 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
 				//Log.d(TAG,  "阴影分辨率:2048");
 			}
 
@@ -346,50 +360,50 @@ public class MainActivity extends PreferenceActivity
 			{}
 			else if (shadow_visible_distance.equals("1"))
 			{
-				Runtime.getRuntime().exec("sed -i 12c\\+CVars=r.Shadow.DistanceScale=0.3 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
+				//Runtime.getRuntime().exec("sed -i 12c\\+CVars=r.Shadow.DistanceScale=0.3 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 28c\\+CVars=0B572A11181D160E573D100A0D18171A1C2A1A18151C4449574A /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
 				//Log.d(TAG,  "阴影可视距离:0.3");
 			}
 			else if (shadow_visible_distance.equals("2"))
 			{
-				Runtime.getRuntime().exec("sed -i 12c\\+CVars=r.Shadow.DistanceScale=0.4 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
+				//Runtime.getRuntime().exec("sed -i 12c\\+CVars=r.Shadow.DistanceScale=0.4 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 28c\\+CVars=0B572A11181D160E573D100A0D18171A1C2A1A18151C4449574D /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
 				//Log.d(TAG,  "阴影可视距离:0.4");
 			}
 			else if (shadow_visible_distance.equals("3"))
 			{
-				Runtime.getRuntime().exec("sed -i 12c\\+CVars=r.Shadow.DistanceScale=0.5 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
+				//Runtime.getRuntime().exec("sed -i 12c\\+CVars=r.Shadow.DistanceScale=0.5 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 28c\\+CVars=0B572A11181D160E573D100A0D18171A1C2A1A18151C4449574C /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
 				//Log.d(TAG,  "阴影可视距离:0.5");
 			}
 			else if (shadow_visible_distance.equals("4"))
 			{
-				Runtime.getRuntime().exec("sed -i 12c\\+CVars=r.Shadow.DistanceScale=0.6 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
+				//Runtime.getRuntime().exec("sed -i 12c\\+CVars=r.Shadow.DistanceScale=0.6 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 28c\\+CVars=0B572A11181D160E573D100A0D18171A1C2A1A18151C4449574F /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
 				//Log.d(TAG,  "阴影可视距离:0.6");
 			}
 			else if (shadow_visible_distance.equals("5"))
 			{
-				Runtime.getRuntime().exec("sed -i 12c\\+CVars=r.Shadow.DistanceScale=0.7 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
+				//Runtime.getRuntime().exec("sed -i 12c\\+CVars=r.Shadow.DistanceScale=0.7 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 28c\\+CVars=0B572A11181D160E573D100A0D18171A1C2A1A18151C4449574E /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
 				//Log.d(TAG,  "阴影可视距离:0.7");
 			}
 			else if (shadow_visible_distance.equals("6"))
 			{
-				Runtime.getRuntime().exec("sed -i 12c\\+CVars=r.Shadow.DistanceScale=0.8 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
+				//Runtime.getRuntime().exec("sed -i 12c\\+CVars=r.Shadow.DistanceScale=0.8 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 28c\\+CVars=0B572A11181D160E573D100A0D18171A1C2A1A18151C44495741 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
 				//Log.d(TAG,  "阴影可视距离:0.8");
 			}
 			else if (shadow_visible_distance.equals("7"))
 			{
-				Runtime.getRuntime().exec("sed -i 12c\\+CVars=r.Shadow.DistanceScale=0.9 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
+				//Runtime.getRuntime().exec("sed -i 12c\\+CVars=r.Shadow.DistanceScale=0.9 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 28c\\+CVars=0B572A11181D160E573D100A0D18171A1C2A1A18151C44495740 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
 				//Log.d(TAG,  "阴影可视距离:0.9");
 			}
 			else if (shadow_visible_distance.equals("8"))
 			{
-				Runtime.getRuntime().exec("sed -i 12c\\+CVars=r.Shadow.DistanceScale=1.0 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
+				//Runtime.getRuntime().exec("sed -i 12c\\+CVars=r.Shadow.DistanceScale=1.0 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 28c\\+CVars=0B572A11181D160E573D100A0D18171A1C2A1A18151C44485749 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
 				//Log.d(TAG,  "阴影可视距离:1.0");
 			}
 
@@ -400,26 +414,26 @@ public class MainActivity extends PreferenceActivity
 			{}
 			else if (shadow_quality.equals("1"))
 			{
-				Runtime.getRuntime().exec("sed -i 5c\\+CVars=r.ShadowQuality=0 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
+				//Runtime.getRuntime().exec("sed -i 5c\\+CVars=r.ShadowQuality=0 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 12c\\+CVars=0B572A11181D160E280C1815100D004449 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
 				//Log.d(TAG,  "阴影质量:无");
 			}
 			else if (shadow_quality.equals("2"))
 			{
-				Runtime.getRuntime().exec("sed -i 5c\\+CVars=r.ShadowQuality=1 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
+				//Runtime.getRuntime().exec("sed -i 5c\\+CVars=r.ShadowQuality=1 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 12c\\+CVars=0B572A11181D160E280C1815100D004448 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
 				//Log.d(TAG,  "阴影质量:低");
 			}
 			else if (shadow_quality.equals("3"))
 			{
-				Runtime.getRuntime().exec("sed -i 5c\\+CVars=r.ShadowQuality=2 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
+				//Runtime.getRuntime().exec("sed -i 5c\\+CVars=r.ShadowQuality=2 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 12c\\+CVars=0B572A11181D160E280C1815100D00444B /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
 				//Log.d(TAG,  "阴影质量:中");
 			}
 			else if (shadow_quality.equals("4"))
 			{
-				Runtime.getRuntime().exec("sed -i 5c\\+CVars=r.ShadowQuality=3 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
+				//Runtime.getRuntime().exec("sed -i 5c\\+CVars=r.ShadowQuality=3 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 12c\\+CVars=0B572A11181D160E280C1815100D00444A /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
 				//Log.d(TAG,  "阴影质量:高");
 			}
 
@@ -430,50 +444,50 @@ public class MainActivity extends PreferenceActivity
 			{}
 			else if (heterosexual_filtration.equals("1"))
 			{
-				Runtime.getRuntime().exec("sed -i 21c\\+CVars=r.MaxAnisotropy=1 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
+				//Runtime.getRuntime().exec("sed -i 21c\\+CVars=r.MaxAnisotropy=1 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 35c\\+CVars=0B573418013817100A160D0B1609004448 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
 				//Log.d(TAG,  "各项异性过滤:1");
 			}
 			else if (heterosexual_filtration.equals("2"))
 			{
-				Runtime.getRuntime().exec("sed -i 21c\\+CVars=r.MaxAnisotropy=2 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
+				//Runtime.getRuntime().exec("sed -i 21c\\+CVars=r.MaxAnisotropy=2 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 35c\\+CVars=0B573418013817100A160D0B160900444B /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
 				//Log.d(TAG,  "各项异性过滤:2");
 			}
 			else if (heterosexual_filtration.equals("3"))
 			{
-				Runtime.getRuntime().exec("sed -i 21c\\+CVars=r.MaxAnisotropy=3 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
+				//Runtime.getRuntime().exec("sed -i 21c\\+CVars=r.MaxAnisotropy=3 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 35c\\+CVars=0B573418013817100A160D0B160900444A /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
 				//Log.d(TAG,  "各项异性过滤:3");
 			}
 			else if (heterosexual_filtration.equals("4"))
 			{
-				Runtime.getRuntime().exec("sed -i 21c\\+CVars=r.MaxAnisotropy=4 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
+				//Runtime.getRuntime().exec("sed -i 21c\\+CVars=r.MaxAnisotropy=4 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 35c\\+CVars=0B573418013817100A160D0B160900444D /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
 				//Log.d(TAG,  "各项异性过滤:4");
 			}
 			else if (heterosexual_filtration.equals("5"))
 			{
-				Runtime.getRuntime().exec("sed -i 21c\\+CVars=r.MaxAnisotropy=5 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
+				//Runtime.getRuntime().exec("sed -i 21c\\+CVars=r.MaxAnisotropy=5 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 35c\\+CVars=0B573418013817100A160D0B160900444C /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
 				//Log.d(TAG,  "各项异性过滤:5");
 			}
 			else if (heterosexual_filtration.equals("6"))
 			{
-				Runtime.getRuntime().exec("sed -i 21c\\+CVars=r.MaxAnisotropy=6 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
+				//Runtime.getRuntime().exec("sed -i 21c\\+CVars=r.MaxAnisotropy=6 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 35c\\+CVars=0B573418013817100A160D0B160900444F /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
 				//Log.d(TAG,  "各项异性过滤:6");
 			}
 			else if (heterosexual_filtration.equals("7"))
 			{
-				Runtime.getRuntime().exec("sed -i 21c\\+CVars=r.MaxAnisotropy=7 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
+				//Runtime.getRuntime().exec("sed -i 21c\\+CVars=r.MaxAnisotropy=7 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 35c\\+CVars=0B573418013817100A160D0B160900444E /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
 				//Log.d(TAG,  "各项异性过滤:7");
 			}
 			else if (heterosexual_filtration.equals("8"))
 			{
-				Runtime.getRuntime().exec("sed -i 21c\\+CVars=r.MaxAnisotropy=8 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
-
+				//Runtime.getRuntime().exec("sed -i 21c\\+CVars=r.MaxAnisotropy=8 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
+				Runtime.getRuntime().exec("sed -i 35c\\+CVars=0B573418013817100A160D0B1609004441 /sdcard/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/UserCustom.ini");
 				//Log.d(TAG,  "各项异性过滤:8");
 			}
 		}
@@ -481,18 +495,18 @@ public class MainActivity extends PreferenceActivity
 		{}
 
     }
-	
+
 	private void createFile()
 	{  
         String filePath = fileDirPath + "/" + fileName;
         try
 		{  
-            File dir = new File(fileDirPath);// 目录路径  
+            File dir = new File(fileDirPath);
             if (!dir.exists())
-			{// 如果不存在，则创建路径名  
+			{
 				//Log.d(TAG, "要存储的目录不存在");  
                 if (dir.mkdirs())
-				{// 创建该路径名，返回true则表示创建成功  
+				{
 					//Log.d(TAG, "已经创建文件存储目录");  
                 }
 				else
@@ -500,10 +514,10 @@ public class MainActivity extends PreferenceActivity
 					//Log.d(TAG, "创建目录失败");  
                 }  
             }  
-            // 目录存在，则将apk中asset中的需要的文档复制到该目录下  
+
             File file = new File(filePath);  
             if (!file.exists())
-			{// 文件不存在  
+			{
 				//Log.d(TAG, "要打开的文件不存在");  
 				AssetManager am = null;  
 
@@ -511,18 +525,17 @@ public class MainActivity extends PreferenceActivity
 
 				InputStream ins = am.open("UserCustom.ini");  
 
-				//Log.d(TAG, "开始读入");  
                 FileOutputStream fos = new FileOutputStream(file);  
-				//Log.d(TAG, "开始写出");  
+
                 byte[] buffer = new byte[8192];  
-                int count = 0;// 循环写出  
+                int count = 0;
                 while ((count = ins.read(buffer)) > 0)
 				{  
                     fos.write(buffer, 0, count);  
                 }  
 				//Log.d(TAG, "已经创建该文件");  
 
-                fos.close();// 关闭流  
+                fos.close();
                 ins.close();  
             }  
         }
@@ -531,50 +544,41 @@ public class MainActivity extends PreferenceActivity
             e.printStackTrace();  
         }  
     }  
-	
+
 	private void updateDialog()
 	{
-		/* @setIcon 设置对话框图标
-		 * @setTitle 设置对话框标题
-		 * @setMessage 设置对话框消息提示
-		 * setXXX方法返回Dialog对象，因此可以链式设置属性
-		 */
+
 		final AlertDialog.Builder normalDialog = new AlertDialog.Builder(MainActivity.this);
+
 		normalDialog.setTitle("更新日志");
-		normalDialog.setMessage("支持Android P(03-12)\n优化部分代码(03-12)\n优化主题对导航栏的适配(03-12)\n适配了Android M以上的权限问题(03-13)\n修复屏幕下方导航栏配色问题(03-15)\n全新的Android O主题(03-15)");
+		normalDialog.setMessage("支持Android P(03-12)\n优化部分代码(03-12)\n适配了Android M以上的权限问题(03-13)\n全新的Android O主题(03-15)\n支持对游戏加密配置的修改(03-17)");
 		normalDialog.setPositiveButton("我知道了", new DialogInterface.OnClickListener() {
 				@Override
 				public void onClick(DialogInterface dialog, int which)
 				{
-					//...To-do
+
 				}
 			});
-			
+
 		SharedPreferences.Editor editor = getSharedPreferences("dialog", MODE_PRIVATE).edit();
-		editor.putString("update", "1");//key名称，任意填写。
-		editor.commit();// 提交是一定需要的。
-			
-		// 显示
+		editor.putString("update", "1");
+		editor.commit();
+
 		normalDialog.show();
 	}
 
 	private void tipDialog()
 	{
-		/* @setIcon 设置对话框图标
-		 * @setTitle 设置对话框标题
-		 * @setMessage 设置对话框消息提示
-		 * setXXX方法返回Dialog对象，因此可以链式设置属性
-		 */
-		 
+
 		final AlertDialog.Builder normalDialog = new AlertDialog.Builder(MainActivity.this);
-		
+
 		normalDialog.setTitle("提示");
-		normalDialog.setMessage("使用说明\n•默认超高清配置支持大部分机型\n•使用自定义配置需要重启本程序\n•本程序修改配置文件不会造成封号\n设置未生效原因\n•未给予程序读写内部存储权限\n•配置过高或配置不当导致游戏自动恢复默认");
+		normalDialog.setMessage("使用说明\n•程序的正常运行需要读写内部存储权限\n•请注意默认配置在你的手机上是否能流畅运行\n•已解决游戏配置加密问题(些许会有些BUG)\n•使用自定义配置后需要再重启本程序一次配置文件才能生效\n•配置过高或配置不当会导致游戏自动恢复默认");
 		normalDialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
 				@Override
 				public void onClick(DialogInterface dialog, int which)
 				{
-					//...To-do
+
 				}
 			});
 		normalDialog.setNegativeButton("下次不再提示", 
@@ -582,14 +586,12 @@ public class MainActivity extends PreferenceActivity
 				@Override
 				public void onClick(DialogInterface dialog, int which)
 				{
-					//...To-do
 					SharedPreferences.Editor editor = getSharedPreferences("dialog", MODE_PRIVATE).edit();
-					editor.putString("tip", "1");//key名称，任意填写。
-
-					editor.commit();// 提交是一定需要的。
+					editor.putString("tip", "1");
+					editor.commit();
 				}
 			});
-		// 显示
+
 		normalDialog.show();
 	}
 
