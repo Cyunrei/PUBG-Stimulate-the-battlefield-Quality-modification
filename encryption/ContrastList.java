@@ -1,11 +1,11 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public class EncryptionContrastList
+public class ContrastList
 {
 	Map<Character, String> maplist = new HashMap<Character, String>();
 
-	public EncryptionContrastList()
+	public ContrastList()
 	{
 
 		maplist.put('A', "38");
