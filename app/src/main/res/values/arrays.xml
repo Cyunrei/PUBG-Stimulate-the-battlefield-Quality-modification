@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string-array name="fluency">
-		<item>默认</item>
+		<item>默认(流畅)</item>
 		<item>流畅</item>
 		<item>均衡</item>
 		<item>高清</item>
@@ -13,7 +13,7 @@
 		<item>3</item>
 	</string-array>
 	<string-array name="special_effects">
-		<item>默认</item>
+		<item>默认(无)</item>
 		<item>无</item>
 		<item>低</item>
 		<item>中</item>
@@ -27,19 +27,23 @@
 		<item>4</item>
 	</string-array>
 	<string-array name="frame">
-		<item>默认</item>
-		<item>低</item>
-		<item>中</item>
-		<item>高</item>
+		<item>默认(极限(60FPS))</item>
+		<item>低(20FPS)</item>
+		<item>中(30FPS)</item>
+		<item>高(40FPS)</item>
+		<item>超高(50FPS)</item>
+		<item>极限(60FPS)</item>
 	</string-array>
 	<string-array name="frame_value">
 		<item>0</item>
 		<item>1</item>
 		<item>2</item>
 		<item>3</item>
+		<item>4</item>
+		<item>5</item>
 	</string-array>
 	<string-array name="material_level">
-		<item>默认</item>
+		<item>默认(低画质)</item>
 		<item>低画质</item>
 		<item>中等画质</item>
 		<item>高清画质</item>
@@ -53,7 +57,7 @@
 		<item>4</item>
 	</string-array>
 	<string-array name="image_quality_style">
-		<item>默认</item>
+		<item>默认(无风格)</item>
 		<item>无风格</item>
 		<item>经典</item>
 		<item>鲜艳</item>
@@ -67,7 +71,7 @@
 		<item>4</item>
 	</string-array>
 	<string-array name="ui_resolution">
-		<item>默认</item>
+		<item>默认(低)</item>
 		<item>低</item>
 		<item>中</item>
 		<item>高</item>
@@ -79,7 +83,7 @@
 		<item>3</item>
 	</string-array>
 	<string-array name="shadow_resolution">
-		<item>默认</item>
+		<item>默认(4)</item>
 		<item>0</item>
 		<item>128</item>
 		<item>512</item>
@@ -94,7 +98,7 @@
 		<item>5</item>
 		</string-array>
 	<string-array name="shadow_visible_distance">
-		<item>默认</item>
+		<item>默认(0)</item>
 		<item>0.3</item>
 		<item>0.4</item>
 		<item>0.5</item>
@@ -116,7 +120,7 @@
 		<item>8</item>
 	</string-array>
 	<string-array name="shadow_quality">
-		<item>默认</item>
+		<item>默认(无)</item>
 		<item>无</item>
 		<item>低</item>
 		<item>中</item>
@@ -130,7 +134,7 @@
 		<item>4</item>
 	</string-array>
 	<string-array name="heterosexual_filtration">
-		<item>默认</item>
+		<item>默认(1)</item>
 		<item>1</item>
 		<item>2</item>
 		<item>3</item>
