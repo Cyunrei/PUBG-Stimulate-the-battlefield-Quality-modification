@@ -9,19 +9,13 @@ android {
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
-        versionName "2.1.2.180315_release|Linux Shell"
+        versionName "3.1.0.180317_release|Linux Shell"
     }
     buildTypes {
         release {
-            // 如果没有提供混淆规则文件，则设置默认的混淆规则文件（SDK/tools/proguard/proguard-android.txt）
             pseudoLocalesEnabled true
-            // 不显示Log
-            buildConfigField "boolean", "LOG_DEBUG", "false"
-            //混淆
             minifyEnabled true
-            //Zipalign优化
             zipAlignEnabled true
-            // 移除无用的resource文件
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
